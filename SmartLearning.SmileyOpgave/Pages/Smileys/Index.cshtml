@@ -1,0 +1,50 @@
+﻿@page
+@model SmartLearning.SmileyOpgave.Pages.Smileys.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].Cvr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].CurrentSmileyRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company[0].DateForLatestSmiley)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Company) {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Cvr
+            </td>
+            <td>
+                @item.CurrentSmileyRating
+            </td>
+            <td>
+                @item.DateForLatestSmiley
+            </td>
+        </tr>
+}
+    </tbody>
+     <SmileyEmoji smileyId=1></SmileyEmoji>
+</table>

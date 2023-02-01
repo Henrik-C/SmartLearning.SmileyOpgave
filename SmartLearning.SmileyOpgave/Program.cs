@@ -9,6 +9,11 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<SmileyOpgaveDbContext>(options => options.UseInMemoryDatabase("SmileyOpgaveDb"));
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    SmileyOpgaveDbSeeder.Seed(services);
+}
 
 
 // Configure the HTTP request pipeline.
