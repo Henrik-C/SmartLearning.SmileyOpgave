@@ -1,0 +1,42 @@
+﻿@page "/Details/{Id:int}"
+@model SmartLearning.SmileyOpgave.Pages.Smileys.DetailsModel
+
+@{
+    ViewData["Title"] = "Detaljer";
+}
+
+<h1>Detaljer</h1>
+
+<div>
+    <h4>Virksomhed</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Navn
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Company.Name
+        </dd>
+        <dt class="col-sm-2">
+            CVR-nummer
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Company.Cvr)
+        </dd>
+        <dt class="col-sm-2">
+            Nuværende smiley
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Company.CurrentSmileyRating
+        </dd>
+        <dt class="col-sm-2">
+            Dato for sidste smiley
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Company.DateForLatestSmiley
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Index">Tilbage til oversigt</a>
+</div>

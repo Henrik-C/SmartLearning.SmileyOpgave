@@ -38,13 +38,27 @@
                 @item.Cvr
             </td>
             <td>
-                @item.CurrentSmileyRating
+                @switch (item.CurrentSmileyRating)
+                {
+                    case Models.Company.SmileyRating.Happy:
+                        <img src="~/images/Sm1bg.jpg" style="max-width:50px;width:100%" />
+                        break;
+                    case Models.Company.SmileyRating.Balanced:
+                        <img src="~/images/Sm3bg.jpg" style="max-width:50px;width:100%" />
+                        break;
+                    case Models.Company.SmileyRating.Sad:
+                        <img src="~/images/Sm4bg.jpg" style="max-width:50px;width:100%" />
+                        break;
+                }
             </td>
             <td>
                 @item.DateForLatestSmiley
             </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id">Læs mere...</a>
+                </td>
         </tr>
+
 }
     </tbody>
-     <SmileyEmoji smileyId=1></SmileyEmoji>
 </table>
