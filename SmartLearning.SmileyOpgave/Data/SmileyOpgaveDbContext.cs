@@ -9,5 +9,6 @@ namespace SmartLearning.SmileyOpgave.Data
         public SmileyOpgaveDbContext(DbContextOptions<SmileyOpgaveDbContext> options) : base(options) { }
 
         public DbSet<Company> Companies { get; set; }
+        public DbSet<SmileyReport> SmileyReports { get; set; }
     }
 }

@@ -14,22 +14,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].Name)
+                @Html.DisplayNameFor(model => model.SmileyReportDtos[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].Cvr)
+                @Html.DisplayNameFor(model => model.SmileyReportDtos[0].Cvr)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].CurrentSmileyRating)
+                @Html.DisplayNameFor(model => model.SmileyReportDtos[0].Smiley)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Company[0].DateForLatestSmiley)
+                @Html.DisplayNameFor(model => model.SmileyReportDtos[0].DateForSmiley)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Company) {
+@foreach (var item in Model.SmileyReportDtos) {
         <tr>
             <td>
                 @item.Name
@@ -38,21 +38,21 @@
                 @item.Cvr
             </td>
             <td>
-                @switch (item.CurrentSmileyRating)
+                @switch (item.Smiley)
                 {
-                    case Models.Company.SmileyRating.Happy:
+                        case Models.Dto.SmileyReportDto.SmileyRating.Happy:
                         <img src="~/images/Sm1bg.jpg" style="max-width:50px;width:100%" />
                         break;
-                    case Models.Company.SmileyRating.Balanced:
+                        case Models.Dto.SmileyReportDto.SmileyRating.Balanced:
                         <img src="~/images/Sm3bg.jpg" style="max-width:50px;width:100%" />
                         break;
-                    case Models.Company.SmileyRating.Sad:
+                        case Models.Dto.SmileyReportDto.SmileyRating.Sad:
                         <img src="~/images/Sm4bg.jpg" style="max-width:50px;width:100%" />
                         break;
                 }
             </td>
             <td>
-                @item.DateForLatestSmiley
+                @item.DateForSmiley
             </td>
                 <td>
                     <a asp-page="./Details" asp-route-id="@item.Id">Læs mere...</a>
