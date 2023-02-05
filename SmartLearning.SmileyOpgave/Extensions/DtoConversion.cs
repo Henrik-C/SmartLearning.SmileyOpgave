@@ -16,11 +16,26 @@ namespace SmartLearning.SmileyOpgave.Extensions
                     {
                         Id = report.Id,
                         Name = company.Name,
+                        CompanyId = company.Id,
                         Cvr = company.Cvr,
                         Address= company.Address,
                         Smiley = (SmileyReportDto.SmileyRating)report.Smiley,
                         DateForSmiley = report.DateForSmiley
                     }).ToList();
+        }
+
+        public static SmileyReportDto ConvertToDto(this SmileyReport report, Company company)
+        {
+            return new SmileyReportDto
+            {
+                Id = report.Id,
+                Name = company.Name,
+                CompanyId = company.Id,
+                Cvr = company.Cvr,
+                Address = company.Address,
+                Smiley = (SmileyReportDto.SmileyRating)report.Smiley,
+                DateForSmiley = report.DateForSmiley
+            };
         }
     }
 }

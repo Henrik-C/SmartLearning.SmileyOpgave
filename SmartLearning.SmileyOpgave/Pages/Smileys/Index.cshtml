@@ -7,9 +7,6 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -41,21 +38,21 @@
                 @switch (item.Smiley)
                 {
                         case Models.Dto.SmileyReportDto.SmileyRating.Happy:
-                        <img src="~/images/Sm1bg.jpg" style="max-width:50px;width:100%" />
-                        break;
+                            <img src="~/images/Sm1bg.jpg" style="max-width:50px;width:100%" />
+                            break;
                         case Models.Dto.SmileyReportDto.SmileyRating.Balanced:
-                        <img src="~/images/Sm3bg.jpg" style="max-width:50px;width:100%" />
-                        break;
+                            <img src="~/images/Sm3bg.jpg" style="max-width:50px;width:100%" />
+                            break;
                         case Models.Dto.SmileyReportDto.SmileyRating.Sad:
-                        <img src="~/images/Sm4bg.jpg" style="max-width:50px;width:100%" />
-                        break;
+                            <img src="~/images/Sm4bg.jpg" style="max-width:50px;width:100%" />
+                            break;
                 }
             </td>
             <td>
                 @item.DateForSmiley
             </td>
                 <td>
-                    <a asp-page="./Details" asp-route-id="@item.Id">Læs mere...</a>
+                    <a asp-page="./Details" asp-route-id="@item.CompanyId">Læs mere...</a>
                 </td>
         </tr>
 

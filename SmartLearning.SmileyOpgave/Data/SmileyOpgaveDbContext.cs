@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartLearning.SmileyOpgave.Entities;
 using SmartLearning.SmileyOpgave.Models;
+using SmartLearning.SmileyOpgave.Models.Dto;
 
 namespace SmartLearning.SmileyOpgave.Data
 {

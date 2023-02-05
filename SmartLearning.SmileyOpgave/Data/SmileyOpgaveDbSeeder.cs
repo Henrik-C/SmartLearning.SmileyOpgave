@@ -45,29 +45,71 @@ namespace SmartLearning.SmileyOpgave.Data
                 // If we get there then the data has already been seeded
                 return;
             }
-
+            int smileyReportId = 1;
             // Data to see the database
             context.SmileyReports.AddRange(
                 new Entities.SmileyReport
                 {
-                    Id = 1,
+                    Id = smileyReportId++,
                     CompanyId = 1,
                     Smiley = Entities.SmileyReport.SmileyRating.Happy,
                     DateForSmiley = new DateOnly(2023, 01, 15)
                 },
                 new Entities.SmileyReport
                 {
-                    Id = 2,
+                    Id = smileyReportId++,
                     CompanyId = 2,
                     Smiley = Entities.SmileyReport.SmileyRating.Balanced,
                     DateForSmiley = new DateOnly(2022, 11, 20)
                 },
                 new Entities.SmileyReport
                 {
-                    Id = 3,
+                    Id = smileyReportId++,
                     CompanyId = 3,
                     Smiley = Entities.SmileyReport.SmileyRating.Sad,
                     DateForSmiley = new DateOnly(2023, 02, 01)
+                },
+                new Entities.SmileyReport
+                {
+                    Id = smileyReportId++,
+                    CompanyId = 1,
+                    Smiley = Entities.SmileyReport.SmileyRating.Sad,
+                    DateForSmiley = new DateOnly(2022, 04, 05)
+                },
+                new Entities.SmileyReport
+                {
+                    Id = smileyReportId++,
+                    CompanyId = 1,
+                    Smiley = Entities.SmileyReport.SmileyRating.Balanced,
+                    DateForSmiley = new DateOnly(2022, 07, 30)
+                },
+                new Entities.SmileyReport
+                {
+                    Id = smileyReportId++,
+                    CompanyId = 2,
+                    Smiley = Entities.SmileyReport.SmileyRating.Happy,
+                    DateForSmiley = new DateOnly(2021, 01, 01)
+                },
+                new Entities.SmileyReport
+                {
+                    Id = smileyReportId++,
+                    CompanyId = 2,
+                    Smiley = Entities.SmileyReport.SmileyRating.Happy,
+                    DateForSmiley = new DateOnly(2020, 11, 07)
+                },
+                new Entities.SmileyReport
+                {
+                    Id = smileyReportId++,
+                    CompanyId = 3,
+                    Smiley = Entities.SmileyReport.SmileyRating.Balanced,
+                    DateForSmiley = new DateOnly(2022, 02, 01)
+                },
+                new Entities.SmileyReport
+                {
+                    Id = smileyReportId++,
+                    CompanyId = 3,
+                    Smiley = Entities.SmileyReport.SmileyRating.Sad,
+                    DateForSmiley = new DateOnly(2022, 06, 20)
                 });
 
             context.SaveChanges();

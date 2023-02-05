@@ -33,18 +33,12 @@ namespace SmartLearning.SmileyOpgave.Pages.Smileys
                 Company = await _context.Companies.ToListAsync();
                 SmileyReport = await _context.SmileyReports.ToListAsync();
 
-                SmileyReportDtos = SmileyReport.ConvertToDto(Company).ToList();
+                // Tager ikke højde for at den samme virksomhed kan optræde på listen flere gange
+                var tempList = SmileyReport.ConvertToDto(Company).ToList();
+                SmileyReportDtos = tempList.OrderByDescending(x => x.DateForSmiley).Take(3).ToList();
             }
 
 
         }
-
-        //public async Task OnGetAsync()
-        //{
-        //    if (_context.Companies != null)
-        //    {
-        //        Company = await _context.Companies.ToListAsync();
-        //    }
-        //}
     }
 }

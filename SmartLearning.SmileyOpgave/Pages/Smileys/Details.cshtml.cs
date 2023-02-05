@@ -6,36 +6,55 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SmartLearning.SmileyOpgave.Data;
+using SmartLearning.SmileyOpgave.Entities;
+using SmartLearning.SmileyOpgave.Extensions;
 using SmartLearning.SmileyOpgave.Models;
+using SmartLearning.SmileyOpgave.Models.Dto;
 
 namespace SmartLearning.SmileyOpgave.Pages.Smileys
 {
     public class DetailsModel : PageModel
     {
-        private readonly SmartLearning.SmileyOpgave.Data.SmileyOpgaveDbContext _context;
+        private readonly SmileyOpgaveDbContext _context;
+        public IEnumerable<Company> Company { get; set; }
+        public IEnumerable<SmileyReport> SmileyReport { get; set; }
+        public IEnumerable<SmileyReportDto> SmileyReportDtos { get; set; }
 
-        public DetailsModel(SmartLearning.SmileyOpgave.Data.SmileyOpgaveDbContext context)
+        public DetailsModel(SmileyOpgaveDbContext context)
         {
             _context = context;
+            
+            Company = _context.Companies.ToList();
+            SmileyReport = _context.SmileyReports.ToList();
+
+            // Her snyder jeg og laver den egentlige context jeg har brug for. 
+            SmileyReportDtos = SmileyReport.ConvertToDto(Company).ToList();
         }
 
-        public Company Company { get; set; } = default!; 
+        public SmileyReportDto SmileyReportDto { get; set; } = default!; 
+        public IEnumerable<SmileyReportDto> PreviousSmileys { get; set; }
+        
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Companies == null)
+            if (id == null || _context == null)
             {
                 return NotFound();
             }
+            
+            var SmileyReportDto = SmileyReportDtos.OrderByDescending(x => x.DateForSmiley).FirstOrDefault(m => m.CompanyId == id);
 
-            var company = await _context.Companies.FirstOrDefaultAsync(m => m.Id == id);
-            if (company == null)
+            // Denne bruges til at hente de enste 3 smileys, foruden den nyeste.
+            PreviousSmileys = SmileyReportDtos.OrderByDescending(x => x.DateForSmiley).Where(m => m.CompanyId == id).Skip(1).Take(3);
+
+            if (SmileyReportDto == null)
             {
                 return NotFound();
             }
             else 
             {
-                Company = company;
+                this.SmileyReportDto = SmileyReportDto;
+                
             }
             return Page();
         }

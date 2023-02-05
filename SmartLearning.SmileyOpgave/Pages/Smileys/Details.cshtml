@@ -1,42 +1,80 @@
-﻿@page "/Details/{Id:int}"
+﻿@page "/Details/{id:int}"
 @model SmartLearning.SmileyOpgave.Pages.Smileys.DetailsModel
 
 @{
-    ViewData["Title"] = "Detaljer";
+    ViewData["Title"] = "Details";
 }
 
-<h1>Detaljer</h1>
+<h1>Details</h1>
 
 <div>
-    <h4>Virksomhed</h4>
+    <h4>Company</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            Navn
+            @Html.DisplayNameFor(model => model.SmileyReportDto.Name)
         </dt>
         <dd class="col-sm-10">
-            @Model.Company.Name
+            @Model.SmileyReportDto.Name
         </dd>
         <dt class="col-sm-2">
-            CVR-nummer
+            @Html.DisplayNameFor(model => model.SmileyReportDto.Cvr)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Company.Cvr)
+            @Model.SmileyReportDto.Cvr
         </dd>
         <dt class="col-sm-2">
-            Nuværende smiley
+            @Html.DisplayNameFor(model => model.SmileyReportDto.Address)
         </dt>
         <dd class="col-sm-10">
-            @Model.Company.CurrentSmileyRating
+            @Model.SmileyReportDto.Address
         </dd>
         <dt class="col-sm-2">
-            Dato for sidste smiley
+            @Html.DisplayNameFor(model => model.SmileyReportDto.DateForSmiley)
         </dt>
         <dd class="col-sm-10">
-            @Model.Company.DateForLatestSmiley
+            @Model.SmileyReportDto.DateForSmiley
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SmileyReportDto.Smiley)
+        </dt>
+        <dd class="col-sm-10">
+            @switch (Model.SmileyReportDto.Smiley)
+            {
+                case Models.Dto.SmileyReportDto.SmileyRating.Happy:
+                    <img src="~/images/Sm1bg.jpg" style="max-width:50px;width:100%" />
+                    break;
+                case Models.Dto.SmileyReportDto.SmileyRating.Balanced:
+                    <img src="~/images/Sm3bg.jpg" style="max-width:50px;width:100%" />
+                    break;
+                case Models.Dto.SmileyReportDto.SmileyRating.Sad:
+                    <img src="~/images/Sm4bg.jpg" style="max-width:50px;width:100%" />
+                    break;
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Tidligere smileys
+        </dt>
+        
+        <dd class="col-sm-10">
+            @foreach (var item in Model.PreviousSmileys)
+            {
+                @switch (item.Smiley)
+                {
+                    case Models.Dto.SmileyReportDto.SmileyRating.Happy:
+                        <img src="~/images/Sm1bg.jpg" style="max-width:50px;width:100%" />
+                        break;
+                    case Models.Dto.SmileyReportDto.SmileyRating.Balanced:
+                        <img src="~/images/Sm3bg.jpg" style="max-width:50px;width:100%" />
+                        break;
+                    case Models.Dto.SmileyReportDto.SmileyRating.Sad:
+                        <img src="~/images/Sm4bg.jpg" style="max-width:50px;width:100%" />
+                        break;
+                }
+            }
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Index">Tilbage til oversigt</a>
+    <a asp-page="./Index">Tilbage til oversigten</a>
 </div>

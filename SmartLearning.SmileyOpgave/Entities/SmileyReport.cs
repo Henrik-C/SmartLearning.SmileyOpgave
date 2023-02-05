@@ -8,8 +8,6 @@ namespace SmartLearning.SmileyOpgave.Entities
         public int Id { get; set; }
         public SmileyRating Smiley { get; set; }
         public int CompanyId { get; set; }
-        
-        [DisplayName("Dato for sidste smiley")]
         public DateOnly DateForSmiley { get; set; }
 
 
